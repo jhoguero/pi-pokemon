@@ -29,7 +29,7 @@ module.exports = async (req, res) => {
         return res.status(200).json(dbSearchByName[0]);
       }
       ////API
-      //Lamado de axios a 'pokeapi.co' con 'name' como endpoint para buscar en API en caso de no encontrar en base de datos
+      //Llamado de axios a 'pokeapi.co' con 'name' como endpoint para buscar en API en caso de no encontrar en base de datos
       const response = (await axios(`https://pokeapi.co/api/v2/pokemon/${name}`)).data
       //Formateo de la respuesta para que la data coincida con el requerimiento del front
       const apiSearchByName = [{

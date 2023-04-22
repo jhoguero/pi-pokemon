@@ -50,7 +50,7 @@ module.exports = async (req, res) => {
     try {
       ////API
       //Llamado de axios para traer los primeros 40 pokemons con sus urls
-      const firstResponse = (await axios('https://pokeapi.co/api/v2/pokemon?limit=40')).data.results;
+      const firstResponse = (await axios('https://pokeapi.co/api/v2/pokemon?limit=150')).data.results;
       //Mapeo de 'firstResponse' para obtener un array con solamente las 40 urls
       const urls = firstResponse.map(p => p.url);
       //Mapeo de 'urls' para obtener un arreglo con las 40 promesas sin resolver

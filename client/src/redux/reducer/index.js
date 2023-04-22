@@ -35,7 +35,7 @@ function rootReducer(state = initialState, action) {
       return { ...state, details: {} };
 
     case GET_TYPES:
-      return { ...state, types: action.payload };
+      return { ...state, types: action.payload.slice(0,20) };
 
     case TYPE_FILTER:
       if (action.payload === "all") {

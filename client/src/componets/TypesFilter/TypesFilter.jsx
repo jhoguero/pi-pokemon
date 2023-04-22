@@ -25,8 +25,8 @@ const TypesFilter = ({ setPage }) => {
           <button
             key={i}
             onClick={() =>
-              filter === t.name ? handleFilter("all") : handleFilter(t.name)
-            }
+              filter === t.name ? handleFilter("all") : handleFilter(t.name)}
+            
             className='button-type'
           >
             {t.name.toUpperCase()}

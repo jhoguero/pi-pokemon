@@ -1,20 +1,27 @@
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import "./Card.css";
 
 function Card({ pokemon }) {
-  const { id, name, img, attack, types, createdInDb } = pokemon;
+  const { id, name, img, attack, types } = pokemon;
 
   return (
     <div className="card-container">
-	<Link to={`home/${id}`}>
-      <h1 className="btn-card">X</h1>
-      <img src={img} alt="imagenpoke" />
-      <h2>Name:{name}</h2>
-      <h2>Types:{types?.map(t=>{
-        return t.name
-      }).join(", ")}</h2>
-	  </Link>
+      <Link to={`details/${id}`}>
+        <div className="image">
+          <img src={img} alt="imagenpoke" />
+        </div>
+        <div className="info">
+          <h2>{name.toUpperCase()}</h2>
+          <h2>
+            {types
+              ?.map((t) => {
+                return t.name;
+              })
+              .join(", ")}
+          </h2>
+        </div>
+      </Link>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getByname, getPokemons } from "../../redux/actions";
+import Pagination from "../../componets/Paginado/Pagination";
 
 import "./Home.css";
 import Navbar from "../../componets/Navbar/Navbar";
@@ -8,48 +9,40 @@ import Cards from "../../componets/Cards/Cards";
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  const allPokemons = useSelector((state) => state.allPokemons); //estara pendiente a cualquier cambio de estado(global)
-  const [searchString, setSearchString] = useState("");
- // filtro Back
+  const PER_PAGE = 12;
+  const [page, setPage] = useState(0);
+  const allPokemons = useSelector((state) =>
+    state.allPokemons.slice(page * PER_PAGE, page * PER_PAGE + PER_PAGE)
+  );
+  // formula para paginar el cual hace el calculo dependiendo cuantos pomekemones se tenga
 
- function handleChange(e) {
-  setSearchString(e.target.value); // setea el target value de la busqueda
-}
-
-function handleSubmit(e){
-  e.preventDefault() // para que refresque la pagina al momento de la busqueda
-  dispatch(getByname(searchString)) // va buscar por el string que dispara el evento
-  setSearchString("")
-}
- 
- 
-  /* const [filtered, setFileted] = useState(allPokemons); //  copiado del filtrado para no alterar el original
-  const [searchString, setSearchString] = useState(""); //
+  const [searchString, setSearchString] = useState(""); //seteo de la busqeda de pokemon
 
   function handleChange(e) {
-    e.preventDefault(); // para que refresque la pagina al momento de la busqueda
     setSearchString(e.target.value); // setea el target value de la busqueda
   }
 
   function handleSubmit(e) {
-    e.preventDefault();
-    const filtered = allPokemons.filter((pokemon) =>
-      pokemon.name.tolowerCase().includes(searchString)
-    ); // filtrado dentro de pokemons y devuelve con el nombre que se busca
-    setFileted(filtered);
-  } */
+    e.preventDefault(); // para que refresque la pagina al momento de la busqueda
+    dispatch(getByname(searchString)); // va buscar por el string que dispara el evento
+    setSearchString("");
+  }
+  function handlePage(pag) {
+    setPage(pag);
+  }
+
 
   useEffect(() => {
     dispatch(getPokemons());
-    /* return (()=>{
-      clearDetail() // sirve para en caso de salir del detale del pokemon: limpia el estado al salir de la pagina
-    }) */
   }, []); //array de dependencia
 
   return (
     <section className="Home-wrapper">
-      <Navbar handleChange={handleChange} handleSubmit={handleSubmit}/>
-      <Cards allPokemons={allPokemons} />
+      <Navbar handleChange={handleChange} handleSubmit={handleSubmit} setPage={setPage}/>
+      <section className="home-container">
+        <Cards allPokemons={allPokemons} />
+        <Pagination page={page} perpage={PER_PAGE} handlePage={handlePage} />
+      </section>
     </section>
   );
 };

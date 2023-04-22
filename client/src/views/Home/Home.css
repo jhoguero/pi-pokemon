@@ -5,9 +5,15 @@
 body{
     background-image: url("../../assets/FondoHome.jpg");
     background-color: black;
+    background-size: cover;
     box-shadow: 0 -180px 170px #000000 inset;
     height: 100vh;
 }
 
-
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 

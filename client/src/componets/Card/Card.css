@@ -1,11 +1,13 @@
 .card-container{
-    width: 250px;
-    height: 276px;
+    width: 215px;
+    height: 180px;
+    margin: 30px;
     background-color: #ffd900;
     box-shadow: 1px 0px 20px 1px rgba(255,255,255,1);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
     cursor: pointer;
     -moz-osx-font-smoothing: grayscale;
     backface-visibility: hidden;
@@ -15,6 +17,25 @@
 
 .card-container:hover{
     transform: scale(1.05);
+}
+
+img {
+    position: relative;
+    width: 42%;
+}
+
+a {
+    text-decoration: none;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    font-family: 'Encode Sans Semi Expanded', sans-serif;
+    font-weight: semibold;
+    color: black;
 }
 
 

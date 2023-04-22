@@ -1,19 +1,23 @@
 import React from "react";
 
 function Create() {
+
+
+
+  
   return (
     <div>
-      <form>
+      <form onSubmit={""}>
         <div>
           <label> Nombre</label>
           <input />
         </div>
         <div>
-          <label> img</label>
+          <label> Img</label>
           <input />
         </div>
         <div>
-          <label> tipo</label>
+          <label> Tipo</label>
           <input />
         </div>
       </form>

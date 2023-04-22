@@ -9,8 +9,8 @@ import {
 import LandingPage from "./views/Landing/Landing";
 import HomePage from './views/Home/Home';
 
-import CreatePage from "./views/Create/Create";
-import DetailsPage from "./views/Details/Detail"
+/* import CreatePage from "./views/Create/Create"; */
+import DetailsPage from "./views/Details/Detail";
 
 function App() {
   return (
@@ -20,9 +20,8 @@ function App() {
 					<Switch>
 						<Route exact path='/' component={ LandingPage } />
 						<Route exact path='/home' component={ HomePage } />
-						{/* <Route exact path='/create' component={ CreatePage } />
-						<Route exact path='/details/:id' component={ DetailsPage }  /> */}
-						{/* <Route path='*' component={ ErrorPage } /> */}
+						{/* <Route exact path='/create' component={ CreatePage } /> */}
+						<Route exact path='/details/:id' component={ DetailsPage } />
 					</Switch>
 
 				</div>

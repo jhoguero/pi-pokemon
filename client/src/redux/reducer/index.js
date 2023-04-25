@@ -5,9 +5,18 @@ import {
   CLEAN_DETAILS,
   GET_TYPES,
   TYPE_FILTER,
+  FILTER_POKEMON,
+  CLEAR_SEARCH,
 } from "../actions";
 
-let initialState = { allPokemons: [], pokemonCopy: [], posts: [], details: {}, types: [], filter: 'all'}; //objetos
+let initialState = {
+  allPokemons: [],
+  pokemonCopy: [],
+  posts: [],
+  details: {},
+  types: [],
+  filter: "all",
+}; //objetos
 
 //funcion para ejecutar dependiendo de la accion solicitada
 function rootReducer(state = initialState, action) {
@@ -35,7 +44,7 @@ function rootReducer(state = initialState, action) {
       return { ...state, details: {} };
 
     case GET_TYPES:
-      return { ...state, types: action.payload.slice(0,20) };
+      return { ...state, types: action.payload.slice(0, 20) };
 
     case TYPE_FILTER:
       if (action.payload === "all") {
@@ -53,6 +62,40 @@ function rootReducer(state = initialState, action) {
           }),
         };
       }
+
+    case FILTER_POKEMON:
+      if (action.payload === "aToZ") {
+        return {
+          ...state,
+          pokemonCopy: state.pokemonCopy.sort((a, b) =>
+            a.name.localeCompare(b.name)
+          ),
+        };
+      }
+      if (action.payload === "zToA") {
+        return {
+          ...state,
+          pokemonCopy: state.pokemonCopy
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .reverse(),
+        };
+      }
+      if (action.payload === "attackDesc") {
+        return {
+          ...state,
+          pokemonCopy: state.pokemonCopy.sort((a, b) => a.attack - b.attack),
+        };
+      }
+      if (action.payload === "attackAsc") {
+        return {
+          ...state,
+          pokemonCopy: state.pokemonCopy.sort((a, b) => b.attack - a.attack),
+        };
+      }
+    case CLEAR_SEARCH:
+    return {...state,
+      allPokemons: state.pokemonCopy
+    }
 
     default:
       return state;

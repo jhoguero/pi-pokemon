@@ -63,6 +63,7 @@ module.exports = async (req, res) => {
           id: r.data.id,
           name: r.data.name,
           img: r.data.sprites.other.dream_world.front_default,
+          attack: r.data.stats.find(s => s.stat.name === 'attack').base_stat,
           types: r.data.types.map(t => {
             return { name: t.type.name };
           })
@@ -72,7 +73,7 @@ module.exports = async (req, res) => {
       ////DB
       //Invoco el método 'findAll' del modelo 'Pokemon' para traer los pokemon de mi base de datos junto con los tipos relacionados desde el modelo 'Type'. Defino los atributos a traer para según la ruta principal
       const dbPokemons = await Pokemon.findAll({
-        attributes: ['id', 'name', 'img'],
+        attributes: ['id', 'name', 'img', "attack"],
         include: [{
           model: Type,
           attributes: ['name'],

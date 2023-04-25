@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import {  useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getByname, getPokemons } from "../../redux/actions";
+import { getByname, clearSearch, getPokemons } from "../../redux/actions";
 import Pagination from "../../componets/Paginado/Pagination";
 
 import "./Home.css";
@@ -14,7 +14,7 @@ const HomePage = () => {
   const allPokemons = useSelector((state) =>
     state.allPokemons.slice(page * PER_PAGE, page * PER_PAGE + PER_PAGE)
   );
-  // formula para paginar el cual hace el calculo dependiendo cuantos pomekemones se tenga
+  // formula para paginar el cual hace el calculo dependiendo cuantos pomekemones se tenga por pagina
 
   const [searchString, setSearchString] = useState(""); //seteo de la busqeda de pokemon
 
@@ -24,6 +24,7 @@ const HomePage = () => {
 
   function handleSubmit(e) {
     e.preventDefault(); // para que refresque la pagina al momento de la busqueda
+    setPage(0)   // reinicia paginado al momento de hacer la busqueda
     dispatch(getByname(searchString)); // va buscar por el string que dispara el evento
     setSearchString("");
   }
@@ -31,14 +32,19 @@ const HomePage = () => {
     setPage(pag);
   }
 
+  function handleClear(){
+    setPage(0)
+    dispatch(clearSearch()); // receta el estado allPokemon a inicial
+  }
+
 
   useEffect(() => {
-    dispatch(getPokemons());
-  }, []); //array de dependencia
+    dispatch(getPokemons()); //llamado a los pokemones
+  }, []);
 
   return (
     <section className="Home-wrapper">
-      <Navbar handleChange={handleChange} handleSubmit={handleSubmit} setPage={setPage}/>
+      <Navbar handleChange={handleChange} handleSubmit={handleSubmit} setPage={setPage} handleClear= {handleClear}/>
       <section className="home-container">
         <Cards allPokemons={allPokemons} />
         <Pagination page={page} perpage={PER_PAGE} handlePage={handlePage} />

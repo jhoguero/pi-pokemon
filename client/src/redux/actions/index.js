@@ -6,6 +6,8 @@ export const GET_DETAILS = "GET_DETAILS";
 export const CLEAN_DETAILS = "CLEAN_DETAILS";
 export const GET_TYPES = 'GET_TYPES';
 export const TYPE_FILTER = 'TYPE_FILTER';
+export const FILTER_POKEMON = "FILTER_POKEMON";
+export const CLEAR_SEARCH = "CLEAR_SEARCH";
 
 export function getPokemons() {
   return async function (dispatch) {
@@ -55,3 +57,11 @@ export function getTypes(types) {
 export const typeFilter = (filter) => {
   return { type: TYPE_FILTER, payload: filter };
 };
+
+export const filterPokemon = (filterName) => {
+  return { type: FILTER_POKEMON, payload: filterName };
+}
+
+export const  clearSearch = () => {
+  return {type: CLEAR_SEARCH}
+}

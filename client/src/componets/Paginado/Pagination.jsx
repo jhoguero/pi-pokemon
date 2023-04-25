@@ -4,7 +4,9 @@ import { useSelector } from "react-redux";
 import './Pagination.css'
 
 const Pagination = ({ handlePage, page, perpage }) => {
-  const pages = useSelector((state) => state.pokemonCopy.length); //busca el estado de la copia pokemon y determina el length
+  const pages = useSelector((state) => {
+    return state.allPokemons.length
+  }); //busca el largo de allPokemon y ajusta la cantidad de pagina segun el type y search.
   const [count, setCount] = useState(0); //el conteo empieza en cero
 
   const [paginate, setPaginate] = useState([]); //declaro estado local(arreglo donde estan las paginas)

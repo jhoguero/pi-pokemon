@@ -19,9 +19,11 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
+const dbsource = require ("../api/src/utils/saveTypes.js");
 
-// Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+// Syncing all the models at once. reinicia la data
+conn.sync({ force: true }).then(async() => {
+ await dbsource();
   server.listen(3001, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });

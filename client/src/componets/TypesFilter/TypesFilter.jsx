@@ -32,6 +32,7 @@ const TypesFilter = ({ setPage }) => {
             {t.name.toUpperCase()}
           </button>
         ))}
+        
     </div>
   )
 }

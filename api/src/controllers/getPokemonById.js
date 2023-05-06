@@ -6,6 +6,7 @@ const isUUID = require ('../utils/isUUID')
 
 module.exports = async (req, res) => {
     const {id} = req.params;
+    //Establezco una condición comprobando si 'id' es o no un UUID para buscar en base de datos o en API
     if (isUUID(id)){
         try{
           // findBypk el cual busca por PK del ids

@@ -16,6 +16,7 @@ let initialState = {
   details: {},
   types: [],
   filter: "all",
+  pokemonOrder:[]
 }; //objetos
 
 //funcion para ejecutar dependiendo de la accion solicitada
@@ -26,6 +27,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         allPokemons: action.payload, // devuelve una araid con todos los pokemon
         pokemonCopy: action.payload, // la copia del filtrado y no alterar el original
+        pokemonOrder: action.payload,
       };
 
     case GET_BY_NAME:
@@ -94,7 +96,7 @@ function rootReducer(state = initialState, action) {
       }
     case CLEAR_SEARCH:
     return {...state,
-      allPokemons: state.pokemonCopy
+      allPokemons: state.pokemonOrder
     }
 
     default:
